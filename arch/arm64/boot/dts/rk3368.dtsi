@@ -49,34 +49,6 @@
 			};
 		};
 
-		little0: cpu@0 {
-			device_type = "cpu";
-			compatible = "arm,cortex-a53", "arm,armv8";
-			reg = <0x0 0x0>;
-			enable-method = "psci";
-			cpu-idle-states = <&CPU_SLEEP_0>;
-		};
-		little1: cpu@1 {
-			device_type = "cpu";
-			compatible = "arm,cortex-a53", "arm,armv8";
-			reg = <0x0 0x1>;
-			enable-method = "psci";
-			cpu-idle-states = <&CPU_SLEEP_0>;
-		};
-		little2: cpu@2 {
-			device_type = "cpu";
-			compatible = "arm,cortex-a53", "arm,armv8";
-			reg = <0x0 0x2>;
-			enable-method = "psci";
-			cpu-idle-states = <&CPU_SLEEP_0>;
-		};
-		little3: cpu@3 {
-			device_type = "cpu";
-			compatible = "arm,cortex-a53", "arm,armv8";
-			reg = <0x0 0x3>;
-			enable-method = "psci";
-			cpu-idle-states = <&CPU_SLEEP_0>;
-		};
 		big0: cpu@100 {
 			device_type = "cpu";
 			compatible = "arm,cortex-a53", "arm,armv8";
@@ -105,6 +77,34 @@
 			enable-method = "psci";
 			cpu-idle-states = <&CPU_SLEEP_0>;
 		};
+		big4: cpu@0 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a53", "arm,armv8";
+			reg = <0x0 0x0>;
+			enable-method = "psci";
+			cpu-idle-states = <&CPU_SLEEP_0>;
+		};
+		big5: cpu@1 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a53", "arm,armv8";
+			reg = <0x0 0x1>;
+			enable-method = "psci";
+			cpu-idle-states = <&CPU_SLEEP_0>;
+		};
+		big6: cpu@2 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a53", "arm,armv8";
+			reg = <0x0 0x2>;
+			enable-method = "psci";
+			cpu-idle-states = <&CPU_SLEEP_0>;
+		};
+		big7: cpu@3 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a53", "arm,armv8";
+			reg = <0x0 0x3>;
+			enable-method = "psci";
+			cpu-idle-states = <&CPU_SLEEP_0>;
+		};
 
 		cpu-map {
 			cluster0 {
@@ -120,20 +120,20 @@
 				core3 {
 					cpu = <&big3>;
 				};
+				core4 {
+					cpu = <&big4>;
+				};
+				core5 {
+					cpu = <&big5>;
+				};
+				core6 {
+					cpu = <&big6>;
+				};
+				core7 {
+					cpu = <&big7>;
+				};
 			};
 			cluster1 {
-				core0 {
-					cpu = <&little0>;
-				};
-				core1 {
-					cpu = <&little1>;
-				};
-				core2 {
-					cpu = <&little2>;
-				};
-				core3 {
-					cpu = <&little3>;
-				};
 			};
 		};
 	};
