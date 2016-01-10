@@ -430,6 +430,8 @@ void __init arch_get_fast_and_slow_cpus(struct cpumask *fast,
 {
 	struct device_node *cn = NULL;
 	int cpu;
+	const bool fast_mask = strlen(CONFIG_HMP_FAST_CPU_MASK);
+	const bool slow_mask = strlen(CONFIG_HMP_SLOW_CPU_MASK);
 
 	cpumask_clear(fast);
 	cpumask_clear(slow);
@@ -438,13 +440,14 @@ void __init arch_get_fast_and_slow_cpus(struct cpumask *fast,
 	 * Use the config options if they are given. This helps testing
 	 * HMP scheduling on systems without a big.LITTLE architecture.
 	 */
-	if (strlen(CONFIG_HMP_FAST_CPU_MASK) && strlen(CONFIG_HMP_SLOW_CPU_MASK)) {
+	if (fast_mask)
 		if (cpulist_parse(CONFIG_HMP_FAST_CPU_MASK, fast))
 			WARN(1, "Failed to parse HMP fast cpu mask!\n");
+	if (slow_mask)
 		if (cpulist_parse(CONFIG_HMP_SLOW_CPU_MASK, slow))
 			WARN(1, "Failed to parse HMP slow cpu mask!\n");
+	if (fast_mask || slow_mask)
 		return;
-	}
 
 	/*
 	 * Else, parse device tree for little cores.
